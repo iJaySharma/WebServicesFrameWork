@@ -32,7 +32,7 @@ public void getFirstEmployee()
 {
 Employee emp=new Employee();
 emp.setCode(101);
-emp.setName("Saksham");
+emp.setName("JAY");
 this.applicationScope.setAttribute("xyz",emp);
 if(this.applicationScope.getAttribute("xyz")!=null)
 {
