@@ -23,6 +23,7 @@ try
 for(Service s : this.servicesToInvokeOnStartup)
 {
 s.getMethod().invoke(s.getServiceClass().newInstance());
+//System.out.println(s.getServiceClass().newInstance());
 }
 }catch(Exception exception)
 {
