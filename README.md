@@ -6,7 +6,7 @@ In a simple word user just wants to write java classes with multiple methods by 
 Basically the idea is developed around Java Reflection Api Annotations and the framework uses Tomcat9 Http web-server.
 ## Benefits of Using FrameWork
 * No requirements of writing servlets and managing their xml mappings because this is actually the part framework handles itself. 
-* User keep the advantage over writing complex request response driven http protocols based services for any kind of request framework will manage it Whole.
+* User can keep the advantage over writing complex request response driven http protocols based services for any kind of request framework will manage it Whole.
 * User ultimately consumes the parameters like Get/Post Requests Inversion of Control(IOC) Servlet life cycle Dependency Injection etc in a transparent manner.
 * Therefore programmer/user bring up the their way of writing java classes to make services for a Web-Application independently.
 ## Let's get Started
@@ -34,10 +34,10 @@ Note: the folder-name mention here should exists inside tomcat9/Webapps/"project
     </servlet-mapping>
     ```
     
-* Now Paste WebRock.jar and gson jar inside libs folder of WEB-INF (TMWebRock.jar is the most important file to use this framework)
+* Now Paste WebRock.jar and gson jar inside libs folder of WEB-INF (WebRock.jar is the most important file to use this framework)
 * start tomcat server by running startup batch file inside tomcat's bin folder and send request from either browser or REST Client
 * for compilation of java classes inside service-package-prefix (i.e bobby folder) write  javac -classpath c:\tomcatFolder\lib*;c:\tomcatFolder\webapps\ProjectName\WEB-INF\lib*; c:\tomcatFolder\webapps\ProjectName\WEB-INF\classes;. ClassName.java<br>
-Note : for testing resources open browser or RESTclient give it as (eg localhost:portNumber/ProjectName/servicePattern/bobby/student) in address bar 
+Note : for testing resources open browser or RESTclient give it as (eg localhost:portNumber/ProjectName/servicePattern/bobby/studentService/addStudent) in address bar 
 * for demostrating the fuctionality of the framework i take you through the usecase examples of what each annotations does in below points/image
 
 
