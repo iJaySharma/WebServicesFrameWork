@@ -1,14 +1,16 @@
-package bobby.student;
+package bobby.Student;
 import com.thinking.machines.webrock.annotations.*;
+import com.thinking.machines.webrock.injections.*;
 @Path("/studentService")
-@Get
 public class StudentService
 {
+
 @Path("/addStudent")
-@Forward("/index.jsp")
-public void addMember()
+@Post
+public Student addStudent(Student student,ApplicationScope as)
 {
-System.out.println("Add Student Invoked");
+System.out.println(student.getRollNumber()+","+student.getName());
+return student;
 }
 @Path("/updateStudent")
 public String updateStudent()

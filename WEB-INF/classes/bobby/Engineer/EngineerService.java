@@ -75,20 +75,17 @@ System.out.println(this.requestScope.getAttribute("rollNumber"));
 
 @Path("/test")
 @Forward("/home.jsp")
-@OnStartup(priority=2)
 public void test()
 {
 if(this.sessionScope!=null) System.out.println(this.sessionScope.getAttribute("name"));
 System.out.println("Test From Engineer Service");
 }
 @Path("/test2")
-@OnStartup(priority=3)
 public void test2()
 {
 System.out.println("Test 2 From Engineer Service");
 }
 @Path("/test3")
-@OnStartup(priority=1)
 @Forward("/student/test")
 public void test3()
 {

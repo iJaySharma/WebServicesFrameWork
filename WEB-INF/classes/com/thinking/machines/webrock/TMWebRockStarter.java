@@ -1,6 +1,7 @@
 package com.thinking.machines.webrock;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import com.thinking.machines.webrock.model.*;
 import com.thinking.machines.webrock.pojo.*;
 import com.thinking.machines.webrock.exceptions.*;
@@ -20,10 +21,13 @@ public void invokeServicesOnStartup()
 {
 try
 {
+Object obj=this.servicesToInvokeOnStartup.get(0).getServiceClass().newInstance();
+//System.out.print(obj.toString());
 for(Service s : this.servicesToInvokeOnStartup)
 {
-s.getMethod().invoke(s.getServiceClass().newInstance());
-//System.out.println(s.getServiceClass().newInstance());
+//Class c = s.getServiceClass();    
+//System.out.print(c.getName());    
+s.getMethod().invoke(obj);
 }
 }catch(Exception exception)
 {
