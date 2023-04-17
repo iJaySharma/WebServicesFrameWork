@@ -217,7 +217,7 @@ return map;
 }
 }
 ```
-## Sample of writing/exposing REST End Points 
+## Sample of writing REST End Points for web-application (CRUD Operations) 
 ```
 package bobby;
 import com.thinking.machines.webrock.annotations.*;
