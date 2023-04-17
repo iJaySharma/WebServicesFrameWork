@@ -1,6 +1,9 @@
 package com.thinking.machines.webrock;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import java.lang.reflect.*;
 import com.thinking.machines.webrock.model.*;
 import com.thinking.machines.webrock.pojo.*;
@@ -662,7 +665,17 @@ serviceResponse.setIsException(false);
 serviceResponse.setMessage(result);
 writer.println(new Gson().toJson(serviceResponse));
 }
-else method.invoke(obj,arguments);
+else 
+{
+    response.setContentType("application/json");
+PrintWriter writer=response.getWriter();
+Object result=method.invoke(obj,arguments);
+ServiceResponse serviceResponse=new ServiceResponse();
+serviceResponse.setSuccess(true);
+serviceResponse.setIsException(false);
+serviceResponse.setMessage(result);
+writer.println(new Gson().toJson(serviceResponse));
+}
 }
 else 
 {
@@ -677,7 +690,7 @@ serviceResponse.setIsException(false);
 serviceResponse.setMessage(result);
 writer.println(new Gson().toJson(serviceResponse));
 }
-else method.invoke(obj);
+else method.invoke(obj,arguments);
 }
 //check if there any autowired fields
 //if forward annotation is present then process it recursively
@@ -1038,7 +1051,18 @@ serviceResponse.setIsException(false);
 serviceResponse.setMessage(result);
 writer.println(new Gson().toJson(serviceResponse));
 }
-else method.invoke(obj,arguments);
+else 
+{
+   // System.out.println("post method with argument, void");
+    response.setContentType("application/json");
+    PrintWriter writer=response.getWriter();
+    Object result=method.invoke(obj,arguments);
+    ServiceResponse serviceResponse=new ServiceResponse();
+    serviceResponse.setSuccess(true);
+    serviceResponse.setIsException(false);
+    serviceResponse.setMessage(result);
+    writer.println(new Gson().toJson(serviceResponse));  
+}
 }
 else 
 {
@@ -1053,7 +1077,18 @@ serviceResponse.setIsException(false);
 serviceResponse.setMessage(result);
 writer.println(new Gson().toJson(serviceResponse));
 }
-else method.invoke(obj);
+else 
+{
+    //System.out.println("post method with void");
+    response.setContentType("application/json");
+PrintWriter writer=response.getWriter();
+Object result=method.invoke(obj,arguments);
+ServiceResponse serviceResponse=new ServiceResponse();
+serviceResponse.setSuccess(true);
+serviceResponse.setIsException(false);
+serviceResponse.setMessage(result);
+writer.println(new Gson().toJson(serviceResponse));
+}
 }
 //here ends method invokation in post
 if(service.getIsForwarding())

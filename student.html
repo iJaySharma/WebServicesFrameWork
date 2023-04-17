@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CRUD Operation on Student</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src='js/studentService.js'></script>
+</head>
+<body>
+	<h1>This is the Sample Web-Application have been made using this framework</h1>
+	<div id="crud-options">
+		<button id="create-btn">Add Student</button>
+		<button id="update-btn">Update Student</button>
+		<button id="delete-btn">Delete Student</button>
+    
+	</div>
+
+        <div id="mod1" style="display: none;">
+		<label for="rollNumber">Roll Number:</label>
+		<input type="text" id="rollNumber1">
+		<label for="name">Name:</label>
+		<input type="text" id="name1">
+                <label for="age">Age:</label>
+                <input type="text" id="age1">
+                 <button id='addButton'>Save</button>
+	</div>
+
+</div>
+
+<div id="mod2" style="display: none;">
+<label for="rollNumber">Roll Number:</label>
+<input type="text" id="rollNumber2">
+<label for="name">Name:</label>
+<input type="text" id="name2">
+		<label for="age">Age:</label>
+		<input type="text" id="age2">
+		 <button id='updateButton'>update</button>
+</div>
+                
+<div id="mod3" style="display: none;">
+	<label for="rollNumber">Roll Number</label>
+	<input type="text" id="rollNumber3">
+	<button id='deleteButton'>delete</button>
+</div>	
+
+	<script>
+$(()=>{
+		$('#create-btn').click(function() {
+				showMod1();
+			});
+
+			$('#update-btn').click(function() {
+				showMod2();
+			});
+
+			$('#delete-btn').click(function() {
+				showMod3();
+			});
+
+function showMod1() {
+	// Clear input fields
+	$('#rollNumber1').val('');
+	$('#name1').val('');
+	$('#age1').val('');
+
+	// Show modal
+	$('#mod1').show();
+}
+
+function showMod2() {
+	// Clear input fields
+	$('#rollNumber2').val('');
+	$('#name2').val('');
+	$('#age2').val('');
+
+	// Show modal
+	$('#mod2').show();
+}
+
+function showMod3() {
+	// Clear input fields
+	$('#rollNumber3').val('');
+
+	// Show modal
+	$('#mod3').show();
+}
+
+			$("#addButton").click(function(ev) {
+//alert("something");
+let rollNumber=$("#rollNumber1").val();
+let name=$("#name1").val();
+let age=$("#age1").val();
+	        
+var student=new Student(rollNumber,name,age);
+var prm=new StudentService().addStudent(student)
+.then(function(response){
+alert("student added successfully");		 
+},
+function(response){
+alert("can not add student");
+});
+window.location.href = "student.html";
+});
+
+$("#updateButton").click(function(ev) {
+//alert("something");
+let rollNumber=$("#rollNumber2").val();
+let name=$("#name2").val();
+let age=$("#age2").val();
+	        
+var student=new Student(rollNumber,name,age);
+var prm=new StudentService().updateStudent(student)
+.then(function(response){
+alert("updated added successfully");		 
+},
+function(response){
+alert("can not update student");
+});
+window.location.href = "student.html";
+});
+
+$("#deleteButton").click(function(ev) {
+//alert("something");
+let rollNumber=$("#rollNumber3").val();
+	        
+var prm=new StudentService().removeStudent(rollNumber)
+.then(function(response){
+alert("deleted added successfully");		 
+},
+function(response){
+alert("can not delete student");
+});
+window.location.href = "student.html";
+});
+
+			});
+
+
+			window.onload=function(){
+			$(()=>{
+var p=new StudentService().getAllStudent()
+.then(function(response){
+//alert(response);
+//var serviceResponse=JSON.parse(response);
+if(response.success==true)
+{
+for(let i=0;i<response.message.length;i++)
+{
+var add="<tr>";
+add=add+"<td>"+response.message[i].rollNumber+"</td>";
+add=add+"<td>"+response.message[i].name+"</td>";
+add=add+"<td>"+response.message[i].age+"</td>";
+add=add+"</tr>";
+$('#our_table').append(add);
+}
+}
+else
+{
+alert(response.isException);
+}
+},function(error){
+alert(error);
+});
+			});
+		}
+	</script>
+<h1>Students</h1>
+<table id='our_table'>
+
+<thead>
+<tr><th>rollNumber</th>
+<th>name</th>
+<th>age</th>
+</tr>
+</thead>
+
+<tbody id='tb_table'>
+
+</tbody>
+</table>
+</body>
+</html>
