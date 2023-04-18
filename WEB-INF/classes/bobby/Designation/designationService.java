@@ -36,6 +36,11 @@ public void Startup2()
     System.out.println("Startup 2 got invoked");
 }
 
-
+@Path("/test")
+@Forward("/home.jsp")
+public void test()
+{
+System.out.println("Test From designation Service");
+}
 
 }
